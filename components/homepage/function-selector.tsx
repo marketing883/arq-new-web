@@ -1,94 +1,103 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { Server, DollarSign, HeadphonesIcon, Megaphone, ArrowRight, MessageCircle, Send } from 'lucide-react';
+import { Server, DollarSign, HeadphonesIcon, Megaphone, ArrowUpRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
 
 const functions = [
   {
     id: 'it-infrastructure',
-    title: 'Autonomous IT Infrastructure',
+    title: 'IT Infrastructure',
+    subtitle: 'Autonomous Operations',
     description: 'Governed CI/CD pipelines and infrastructure automation with compliance built-in.',
     icon: Server,
-    features: ['Automated incident response', 'Policy-driven releases', '40% faster deployments'],
-    gradient: 'from-blue-500 to-indigo-600',
-    iconBg: 'bg-blue-100',
-    iconColor: 'text-blue-600',
+    stats: '40% faster deployments',
+    gradient: 'from-blue-500/20 to-cyan-500/20',
+    borderColor: 'hover:border-blue-500/50',
+    iconColor: 'text-blue-400',
   },
   {
     id: 'revenue-ops',
-    title: 'Revenue Operations Automation',
+    title: 'Revenue Operations',
+    subtitle: 'Intelligent Automation',
     description: 'Governed automation for revenue workflows: lead routing, data enrichment, forecasting.',
     icon: DollarSign,
-    features: ['Lead scoring & routing', 'CRM data quality', '95% data accuracy'],
-    gradient: 'from-emerald-500 to-teal-600',
-    iconBg: 'bg-emerald-100',
-    iconColor: 'text-emerald-600',
+    stats: '95% data accuracy',
+    gradient: 'from-emerald-500/20 to-green-500/20',
+    borderColor: 'hover:border-emerald-500/50',
+    iconColor: 'text-emerald-400',
   },
   {
     id: 'customer-success',
-    title: 'Autonomous Customer Success',
+    title: 'Customer Success',
+    subtitle: 'AI-Powered Support',
     description: 'Governed customer support automation with agent orchestration for ticket resolution.',
     icon: HeadphonesIcon,
-    features: ['Tier-1 automation', 'Smart escalation', '70% auto-resolution'],
-    gradient: 'from-violet-500 to-purple-600',
-    iconBg: 'bg-violet-100',
-    iconColor: 'text-violet-600',
+    stats: '70% auto-resolution',
+    gradient: 'from-violet-500/20 to-purple-500/20',
+    borderColor: 'hover:border-violet-500/50',
+    iconColor: 'text-violet-400',
   },
   {
     id: 'demand-gen',
-    title: 'Autonomous Demand Generation',
+    title: 'Demand Generation',
+    subtitle: 'Marketing Intelligence',
     description: 'Governed marketing automation for campaigns, content generation, and lead nurturing.',
     icon: Megaphone,
-    features: ['Campaign automation', 'Content generation', '100% GDPR compliance'],
-    gradient: 'from-orange-500 to-red-500',
-    iconBg: 'bg-orange-100',
-    iconColor: 'text-orange-600',
+    stats: '100% GDPR compliance',
+    gradient: 'from-orange-500/20 to-amber-500/20',
+    borderColor: 'hover:border-orange-500/50',
+    iconColor: 'text-orange-400',
   },
 ];
 
 export function FunctionSelector() {
-  const [chatOpen, setChatOpen] = useState(false);
-  const [message, setMessage] = useState('');
-
   return (
-    <section id="explore" className="py-24 bg-gradient-to-b from-gray-50 to-white">
-      <div className="container mx-auto px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-16">
+    <section id="functions" className="relative py-32 bg-[#0a0a0f]">
+      {/* Background decorations */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-[#00ff88]/5 rounded-full blur-[150px]" />
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[120px]" />
+      </div>
+
+      <div className="relative z-10 container mx-auto px-6 lg:px-8">
+        {/* Section header */}
+        <div className="text-center mb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-[#0A2463]/5 rounded-full text-sm text-[#0A2463] font-medium mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#00ff88]/20 bg-[#00ff88]/5 mb-6"
           >
-            <MessageCircle className="h-4 w-4" />
-            Talk to ArqBot to explore
+            <div className="w-2 h-2 rounded-full bg-[#00ff88] animate-pulse" />
+            <span className="text-[#00ff88] text-sm font-medium">Explore Use Cases</span>
           </motion.div>
+
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold text-[#0A2463] mb-6"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
           >
-            Choose Your Function
+            Transform Your Operations
+            <br />
+            <span className="text-gray-500">with Governed AI Agents</span>
           </motion.h2>
+
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-xl text-gray-600 max-w-2xl mx-auto"
+            className="text-xl text-gray-400 max-w-2xl mx-auto"
           >
-            Select your area of focus to explore how ArqAI can transform your operations with governed AI agents.
+            Select your function to explore how ArqAI can automate your workflows while maintaining full governance and compliance.
           </motion.p>
         </div>
 
-        {/* Function Cards */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16">
+        {/* Function cards grid */}
+        <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {functions.map((func, index) => (
             <motion.div
               key={func.id}
@@ -98,50 +107,47 @@ export function FunctionSelector() {
               transition={{ delay: index * 0.1 }}
             >
               <Link href={`/canvas/${func.id}`}>
-                <div className="group relative overflow-hidden rounded-2xl p-8 h-full transition-all duration-500 bg-white border-2 border-gray-100 hover:border-transparent hover:shadow-2xl hover:shadow-gray-200/50 hover:-translate-y-1">
-                  {/* Hover gradient overlay */}
+                <div className={cn(
+                  "group relative overflow-hidden rounded-3xl p-8 h-full transition-all duration-500",
+                  "bg-[#0d0d12] border border-[#1a1a24]",
+                  func.borderColor
+                )}>
+                  {/* Gradient background on hover */}
                   <div className={cn(
                     "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br",
                     func.gradient
                   )} />
 
+                  {/* Glow effect */}
+                  <div className="absolute -inset-px rounded-3xl bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+
                   {/* Content */}
                   <div className="relative z-10">
-                    <div className="flex items-start gap-5">
+                    {/* Header */}
+                    <div className="flex items-start justify-between mb-6">
                       <div className={cn(
-                        "flex-shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-500",
-                        func.iconBg,
-                        "group-hover:bg-white/20"
+                        "w-14 h-14 rounded-2xl flex items-center justify-center",
+                        "bg-[#1a1a24] group-hover:bg-[#252530] transition-colors"
                       )}>
-                        <func.icon className={cn(
-                          "h-7 w-7 transition-colors duration-500",
-                          func.iconColor,
-                          "group-hover:text-white"
-                        )} />
+                        <func.icon className={cn("w-7 h-7", func.iconColor)} />
                       </div>
-                      <div className="flex-1">
-                        <h3 className="text-xl font-bold text-[#0A2463] group-hover:text-white mb-3 transition-colors duration-500">
-                          {func.title}
-                        </h3>
-                        <p className="text-gray-600 group-hover:text-white/90 mb-5 transition-colors duration-500 leading-relaxed">
-                          {func.description}
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                          {func.features.map((feature) => (
-                            <span
-                              key={feature}
-                              className="text-xs font-medium px-3 py-1.5 rounded-full bg-gray-100 text-gray-700 group-hover:bg-white/20 group-hover:text-white transition-all duration-500"
-                            >
-                              {feature}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
+                      <ArrowUpRight className="w-6 h-6 text-gray-600 group-hover:text-white transition-colors transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                     </div>
 
-                    {/* Arrow */}
-                    <div className="absolute top-8 right-8">
-                      <ArrowRight className="h-6 w-6 text-gray-300 group-hover:text-white transition-all duration-500 group-hover:translate-x-2" />
+                    {/* Title */}
+                    <div className="mb-4">
+                      <p className="text-sm text-gray-500 mb-1">{func.subtitle}</p>
+                      <h3 className="text-2xl font-bold text-white">{func.title}</h3>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-gray-400 mb-6 leading-relaxed">
+                      {func.description}
+                    </p>
+
+                    {/* Stats badge */}
+                    <div className="inline-flex items-center px-4 py-2 rounded-full bg-[#1a1a24] border border-[#252530]">
+                      <span className="text-sm text-[#00ff88] font-medium">{func.stats}</span>
                     </div>
                   </div>
                 </div>
@@ -149,66 +155,6 @@ export function FunctionSelector() {
             </motion.div>
           ))}
         </div>
-
-        {/* Quick Chat Box */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="max-w-2xl mx-auto"
-        >
-          <div className="bg-[#0A2463] rounded-3xl p-8 shadow-2xl shadow-[#0A2463]/20">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-full bg-[#A7FF83] flex items-center justify-center">
-                <MessageCircle className="h-5 w-5 text-[#0A2463]" />
-              </div>
-              <div>
-                <h3 className="text-white font-semibold">Ask ArqBot</h3>
-                <p className="text-gray-400 text-sm">Get instant answers about ArqAI</p>
-              </div>
-            </div>
-
-            <div className="flex gap-3">
-              <input
-                type="text"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                placeholder="Ask about AI governance, deployment, security..."
-                className="flex-1 bg-white/10 border border-white/20 rounded-xl px-5 py-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#A7FF83]/50 focus:border-transparent"
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' && message.trim()) {
-                    window.location.href = `/canvas/it-infrastructure?q=${encodeURIComponent(message)}`;
-                  }
-                }}
-              />
-              <Button
-                onClick={() => {
-                  if (message.trim()) {
-                    window.location.href = `/canvas/it-infrastructure?q=${encodeURIComponent(message)}`;
-                  }
-                }}
-                className="bg-[#A7FF83] text-[#0A2463] hover:bg-[#8FE86B] px-6 rounded-xl font-semibold"
-              >
-                <Send className="h-5 w-5" />
-              </Button>
-            </div>
-
-            {/* Quick prompts */}
-            <div className="flex flex-wrap gap-2 mt-4">
-              {['How does governance work?', 'What about security?', 'Show me ROI'].map((prompt) => (
-                <button
-                  key={prompt}
-                  onClick={() => {
-                    window.location.href = `/canvas/it-infrastructure?q=${encodeURIComponent(prompt)}`;
-                  }}
-                  className="text-sm px-4 py-2 rounded-full bg-white/10 text-gray-300 hover:bg-white/20 hover:text-white transition-colors"
-                >
-                  {prompt}
-                </button>
-              ))}
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

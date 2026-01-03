@@ -1,8 +1,7 @@
 import { Hero } from '@/components/homepage/hero';
 import { FunctionSelector } from '@/components/homepage/function-selector';
-import { TrustIndicators } from '@/components/homepage/trust-indicators';
+import { ArchitectureSection } from '@/components/homepage/architecture-section';
 import { ValueProposition } from '@/components/homepage/value-proposition';
-import { PatentsSection } from '@/components/homepage/patents-section';
 import { CTASection } from '@/components/homepage/cta-section';
 
 export default function Home() {
@@ -10,9 +9,8 @@ export default function Home() {
     <>
       <Hero />
       <FunctionSelector />
+      <ArchitectureSection />
       <ValueProposition />
-      <TrustIndicators />
-      <PatentsSection />
       <CTASection />
     </>
   );
