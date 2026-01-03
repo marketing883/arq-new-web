@@ -1,18 +1,43 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 
-// Create Supabase client for browser
-export const supabase = createClient(supabaseUrl, supabaseKey);
+// Create a null client when not configured
+let _supabaseClient: SupabaseClient | null = null;
+
+// Create Supabase client for browser (lazy initialization)
+export const getSupabase = (): SupabaseClient | null => {
+  if (!supabaseUrl || !supabaseKey) {
+    return null;
+  }
+
+  if (!_supabaseClient) {
+    _supabaseClient = createClient(supabaseUrl, supabaseKey);
+  }
+
+  return _supabaseClient;
+};
+
+// Legacy export for backwards compatibility
+export const supabase = supabaseUrl && supabaseKey ? createClient(supabaseUrl, supabaseKey) : null;
 
 // Create Supabase admin client for server-side operations
-export const createSupabaseAdmin = () => {
+export const createSupabaseAdmin = (): SupabaseClient | null => {
   const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  if (!supabaseUrl) {
+    console.warn('NEXT_PUBLIC_SUPABASE_URL not set');
+    return null;
+  }
 
   if (!serviceRoleKey) {
     console.warn('SUPABASE_SERVICE_ROLE_KEY not set');
-    return supabase;
+    // Fall back to anon key if available
+    if (supabaseKey) {
+      return createClient(supabaseUrl, supabaseKey);
+    }
+    return null;
   }
 
   return createClient(supabaseUrl, serviceRoleKey, {
