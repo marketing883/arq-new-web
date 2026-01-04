@@ -1,0 +1,13 @@
+<svg width="200" height="50" viewBox="0 0 200 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- A Icon -->
+  <path d="M8 40L22 8L28 24H20L16 32H28L32 40H40L26 8L22 0L8 40Z" fill="#0047BA"/>
+  <path d="M16 20L22 8L28 20L22 32L16 20Z" fill="#0047BA"/>
+
+  <!-- Lime dot -->
+  <circle cx="36" cy="14" r="6" fill="#C5F82A"/>
+
+  <!-- ArqAI text -->
+  <text x="52" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="bold" fill="#1a1a1a">
+    <tspan>Arq</tspan><tspan fill="#1a1a1a">AI</tspan>
+  </text>
+</svg>

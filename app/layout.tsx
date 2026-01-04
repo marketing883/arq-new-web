@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { ChatProvider } from '@/components/chat/chat-provider';
+import { ChatInterface } from '@/components/chat/chat-interface';
 import { Header } from '@/components/layout/header';
-import { Footer } from '@/components/layout/footer';
 
 export const metadata: Metadata = {
   title: 'ArqAI - The AI Agent Platform Enterprises Trust to Run in Production',
@@ -29,12 +30,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className="font-sans antialiased">
-        <Header />
-        <main className="min-h-screen pt-16">
-          {children}
-        </main>
-        <Footer />
+      <body className="font-sans antialiased bg-gray-50">
+        <ChatProvider>
+          <Header />
+          <main className="min-h-screen">
+            {children}
+          </main>
+          <ChatInterface />
+        </ChatProvider>
       </body>
     </html>
   );
